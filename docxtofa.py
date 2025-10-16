@@ -12,19 +12,19 @@ options = None
 def parse_args():
   parser = optparse.OptionParser(
     """
-    'docxtofa' is a tool used to translate a docx file to a txt with formatting for Fur Affinity.
+    'docxtofa' is a tool used to translate docx files to txt files with formatting for Fur Affinity.
     This can be helpful for posting stories in the description without having to lose formatting.
-    Note: This software cannot recognize horizontal lines. You'll have to place in 5+ dashes (-) manually. 
+    Note: This software cannot recognize links or horizontal lines. You'll have to place in 5+ dashes (-) manually. 
 
-    run with: 'python3 docxtofa.py [file]' or just drag your docx file(s) onto the program
+    run with: '{Python Path} docxtofa.py [file]' or just drag your docx file(s) onto the program
     
     Tool created by: Haika and Lexario
     """,
     version="%prog 1.0")
 
   # Available command line arguments
-  parser.add_option("-v", "--verbose", action="store_true", default=False, dest="verbose", help="Enable this flag for additional print logging.")
-  parser.add_option("-q", "--quiet", action="store_true", default=False, dest="quiet", help="Enable this flag to turn off any print logging.")
+  parser.add_option("-v", "--verbose", dest="verbose", action="store_true", default=False, help="Enable this flag for additional print logging.")
+  parser.add_option("-q", "--quiet", dest="quiet", action="store_true", default=False, help="Enable this flag to turn off any print logging.")
   
   global options
   (options, arguments) = parser.parse_args()
@@ -114,37 +114,38 @@ def parse_doc(inFile, outFile):
 
 
 ########## MAIN ##########
-options = parse_args() # Parse optional arguments
-inFiles = []
-for arg in sys.argv[1:]: # Store input files
-  if arg[0] != '-':
-    inFiles.append(arg)
+def main():
+  options = parse_args() # Parse optional arguments
+  inFiles = []
+  for arg in sys.argv[1:]: # Store input files
+    if arg[0] != '-':
+      inFiles.append(arg)
 
-if not options.quiet:
-  print("Ready to translate these files:")
+  if not options.quiet:
+    print("Ready to translate these files:")
+    for p in inFiles:
+      print(p)
+    print("Text files will appear in the same directory as the source.")
+    os.system("pause")
+    print("")
+
   for p in inFiles:
-    print(p)
-  print("Text files will appear in the same directory as the source.")
-  os.system("pause")
-  print("")
+    if options.verbose:
+      print("Parsing path:", p)
+    outFilename = get_outFilename(p)
+    if options.verbose:
+      print("Creating text file with name:", outFilename.split("\\")[-1])
+    outFile = open(outFilename, "w", encoding="utf-8")
+    if options.verbose:
+      print("Parsing document:", p.split("\\")[-1])
+    parse_doc(p, outFile)
+    outFile.close()
+    if options.verbose:
+      print(outFilename, "Written successfully\n")
 
-for p in inFiles:
-  if options.verbose:
-    print("Parsing path:", p)
-  outFilename = get_outFilename(p)
-  if options.verbose:
-    print("Creating text file with name:", outFilename.split("\\")[-1])
-  outFile = open(outFilename, "w", encoding="utf-8")
-  if options.verbose:
-    print("Parsing document:", p.split("\\")[-1])
-  parse_doc(p, outFile)
-  outFile.close()
-  if options.verbose:
-    print(outFilename, "Written successfully\n")
-
-if not options.quiet:
-  print("Files translated.")
-  os.system("pause")
+  if not options.quiet:
+    print("File(s) translated.")
+    os.system("pause")
 ########## END MAIN ##########
 
 # TODO:
@@ -152,3 +153,6 @@ if not options.quiet:
 # Headings
 # Hyperlinks (URLs)
 # Detect if last line is new line
+
+if __name__ == '__main__':
+  main()
