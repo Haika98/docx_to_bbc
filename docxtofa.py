@@ -37,6 +37,10 @@ def get_outFilename(inFile):
   fileNoExtension = inFile[:-(len(fileExtension)+1)]
   if fileExtension == "docx":
     textFilename = fileNoExtension + " (FA).txt"
+  else:
+    print("Error: Passed in file is not docx format.")
+    quit()
+
   return textFilename
 
 
@@ -66,7 +70,6 @@ def parse_paragraph(outFile, paragraph):
 
 
 def parse_alignment(outFile, paragraph):
-  outFile.write("\t")
   if paragraph.alignment == WD_ALIGN_PARAGRAPH.CENTER: # Center aligned
     outFile.write("[center]")
     parse_paragraph(outFile, paragraph)
