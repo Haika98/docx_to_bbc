@@ -36,7 +36,7 @@ def get_outFilename(inFile):
   fileExtension = inFile.split(".")[-1]
   fileNoExtension = inFile[:-(len(fileExtension)+1)]
   if fileExtension == "docx":
-    textFilename = fileNoExtension + ".txt"
+    textFilename = fileNoExtension + " (FA).txt"
   return textFilename
 
 
