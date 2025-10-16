@@ -1,0 +1,106 @@
+This is a standard line of text.
+
+This line follows a blank line.
+
+
+This line follows two blank lines.
+
+
+
+This line follows three blank lines.
+[b]This line is bolded.[/b]
+[i]This line is italicized.[/i]
+[u]This line is underlined.[/u]
+[b][u]This line is bolded and underlined.[/u][/b]
+[b][i]This line is bolded and italicized.[/i][/b]
+[i][u]This line is italicized and underlined.[/u][/i]
+[b][i][u]This line is bolded, italicized, and underlined.[/u][/i][/b]
+[s]This line is striked through.[/s]
+[s][b]This line is bolded and striked through.[/b][/s]
+[s][i]This line is italicized and striked through.[/i][/s]
+[s][u]This line is underlined and striked through.[/u][/s]
+[s][b][u]This line is bolded, underlined, and striked through.[/u][/b][/s]
+[s][b][i]This line is bolded, italicized, and striked through.[/i][/b][/s]
+[s][i][u]This line is italicized, underlined, and striked through.[/u][/i][/s]
+[s][b][i][u]This line is bolded, italicized, underlined, and striked through.[/u][/i][/b][/s]
+This line has a superscript at the end[sup](This is the superscript)[/sup]
+This line has a subscript at the end[sub](This is the subscript)[/sub]
+This line precedes a horizontal line.
+-----
+This line follows a horizontal line.
+[color=#FF0000]This text is red.[/color]
+[color=#00FF00]This text is green.[/color]
+[color=#0000FF]This text is blue.[/color]
+[color=#FFFF00]This text is yellow.[/color]
+[color=#9900FF]This text is purple.[/color]
+[color=#C0FFEE]This text is 0xc0ffee[/color]
+[color=#FFFFFF]This text is white.[/color]
+This black text is highlighted yellow.
+[color=#FF0000]This red text is highlighted yellow.[/color]
+This black text is highlighted blue.
+[color=#FF0000]This red text is highlighted blue.[/color]
+[color=#FFFF00]This yellow text is highlighted yellow.[/color]
+[color=#FFFFFF]This white text is highlighted purple.[/color]
+This black text is highlighted white.
+[color=#FFFFFF]This white text is highlighted black.[/color]
+This black text is highlighted black.
+This is a “Title”
+This is a “Subtitle”
+This is “Heading 1”
+This is “Heading 2”
+This is “Heading 3”
+This is “Heading 4”
+This is “Heading 5”
+This line precedes a 3 row 3 column table:
+
+[b][i]This text is left aligned.[/i][/b]
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+[center][b][i]This text is center aligned.[/i][/b][/center]
+[center]Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.[/center]
+[center][/center]
+[right][b][i]This text is right aligned.[/i][/b][/right]
+[right]Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.[/right]
+[right][/right]
+[b][i]This text is justified.[/i][/b]
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+[b][i]	The beginning of this paragraph contains an indentation.[/i][/b] Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+“This is some quoted text ‘and here is some sub-quoted text.’”
+
+`1234567890-=qwertyuiop[]\asdfghjkl;’zxcvbnm,./~!@#$%^&*()_+QWERTYUIOP{}|ASDFGHJKL:”ZXCVBNM<>?© ™ ®
+… …
+— – -
+This line precedes a page break.
+
+
+This line follows a page break.
+
+The following is a dashed list:
+Item 1
+Indented bullet
+Item 2
+Double indented bullet
+Item 3
+
+The following is a bulleted list:
+Item 1
+Indented bullet
+Item 2
+Double indented bullet
+Item 3
+
+This line precedes text containing a hyperlink.
+[url=https://www.bbcode.org/how-to-use-bbcode-a-complete-guide.php]This text contains a hyperlink.[/url]
+This line follows text containing a hyperlink.
+
+This line precedes an image of a cat containing a white background.
+
+This line follows an image of a cat containing a white background.
+This line precedes an image of a cat containing a transparent background.
+
+This line follows an image of a cat containing a transparent background.
+
+This line precedes a newline.
+
