@@ -20,7 +20,7 @@ def parse_args():
     
     Tool created by: Haika and Lexario
     """,
-    version="%prog 0.5")
+    version="%prog 1.0")
 
   # Available command line arguments
   parser.add_option("-v", "--verbose", action="store_true", default=False, dest="verbose", help="Enable this flag for additional print logging.")
@@ -120,24 +120,35 @@ for arg in sys.argv[1:]: # Store input files
   if arg[0] != '-':
     inFiles.append(arg)
 
+if not options.quiet:
+  print("Ready to translate these files:")
+  for p in inFiles:
+    print(p)
+  print("Text files will appear in the same directory as the source.")
+  os.system("pause")
+  print("")
+
 for p in inFiles:
   if options.verbose:
     print("Parsing path:", p)
   outFilename = get_outFilename(p)
   if options.verbose:
-    print("Creating text file with name:", outFilename.split("/")[-1])
+    print("Creating text file with name:", outFilename.split("\\")[-1])
   outFile = open(outFilename, "w", encoding="utf-8")
+  if options.verbose:
+    print("Parsing document:", p.split("\\")[-1])
   parse_doc(p, outFile)
   outFile.close()
+  if options.verbose:
+    print(outFilename, "Written successfully\n")
 
 if not options.quiet:
-  print("Successfully translated files.")
+  print("Files translated.")
   os.system("pause")
 ########## END MAIN ##########
 
 # TODO:
 # Horizontal lines
 # Headings
-# Colors
 # Hyperlinks (URLs)
 # Detect if last line is new line
