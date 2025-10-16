@@ -17,7 +17,7 @@ def parse_args():
     
     Tool created by: Haika and Lexario
     """,
-    version="%prog 1.0")
+    version="%prog 1.1")
 
   # Available command line arguments
   parser.add_option("-v", "--verbose", dest="verbose", action="store_true", default=False, help="Enable this flag for additional print logging.")
