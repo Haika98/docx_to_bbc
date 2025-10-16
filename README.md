@@ -3,6 +3,8 @@ A tool used to translate a docx file to a txt with formatting for Fur Affinity. 
 
 Run with: `python3 docxtofa.py [options] "FILE.docx"`
 
+Output file will be: `FILE (FA).txt`
+
 -----
 
 Notes:
