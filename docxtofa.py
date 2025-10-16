@@ -1,11 +1,8 @@
 #!/usr/bin/env python3
 import optparse
 import sys
-import io
-import os
 import docx
 from docx.enum.text import WD_ALIGN_PARAGRAPH
-from docx.dml.color import ColorFormat
 
 options = None
 
@@ -43,74 +40,50 @@ def get_outFilename(inFile):
   return textFilename
 
 
+def parse_run(outFile, run):
+  text = run.text
+  if run.underline:
+    text = "[u]" + text + "[/u]"
+  if run.italic:
+    text = "[i]" + text + "[/i]"
+  if run.bold:
+    text = "[b]" + text + "[/b]"
+  if run.font.strike:
+    text = "[s]" + text + "[/s]"
+  if run.font.superscript:
+    text = "[sup]" + text + "[/sup]"
+  if run.font.subscript:
+    text = "[sub]" + text + "[/sub]"
+  if run.font.color.type != None:
+    color = "#" + str(run.font.color.rgb)
+    text = "[color=" + color + "]" + text + "[/" + color + "]"
+  outFile.write(text)
+
+
+def parse_paragraph(outFile, paragraph):
+  for run in paragraph.runs:
+    parse_run(outFile, run)
+
+
+def parse_alignment(outFile, paragraph):
+  outFile.write("\t")
+  if paragraph.alignment == WD_ALIGN_PARAGRAPH.CENTER: # Center aligned
+    outFile.write("[center]")
+    parse_paragraph(outFile, paragraph)
+    outFile.write("[/center]")
+  elif paragraph.alignment == WD_ALIGN_PARAGRAPH.RIGHT: # Right aligned
+    outFile.write("[right]")
+    parse_paragraph(outFile, paragraph)
+    outFile.write("[/right]")
+  else: # Left (default) aligned
+    parse_paragraph(outFile, paragraph)
+  outFile.write("\n")
+
+
 def parse_doc(inFile, outFile):
   doc = docx.Document(inFile)
   for paragraph in doc.paragraphs:
-    outFile.write("\t")
-    if paragraph.alignment == WD_ALIGN_PARAGRAPH.CENTER: # Center aligned
-      outFile.write("[center]")
-      for run in paragraph.runs:
-        text = run.text
-        if run.underline:
-          text = "[u]" + text + "[/u]"
-        if run.italic:
-          text = "[i]" + text + "[/i]"
-        if run.bold:
-          text = "[b]" + text + "[/b]"
-        if run.font.strike:
-          text = "[s]" + text + "[/s]"
-        if run.font.superscript:
-          text = "[sup]" + text + "[/sup]"
-        if run.font.subscript:
-          text = "[sub]" + text + "[/sub]"
-        if run.font.color.type != None:
-          color = "#" + str(run.font.color.rgb)
-          text = "[color=" + color + "]" + text + "[/" + color + "]"
-        outFile.write(text)
-      outFile.write("[/center]")
-      outFile.write("\n")
-    elif paragraph.alignment == WD_ALIGN_PARAGRAPH.RIGHT: # Right aligned
-      outFile.write("[right]")
-      for run in paragraph.runs:
-        text = run.text
-        if run.underline:
-          text = "[u]" + text + "[/u]"
-        if run.italic:
-          text = "[i]" + text + "[/i]"
-        if run.bold:
-          text = "[b]" + text + "[/b]"
-        if run.font.strike:
-          text = "[s]" + text + "[/s]"
-        if run.font.superscript:
-          text = "[sup]" + text + "[/sup]"
-        if run.font.subscript:
-          text = "[sub]" + text + "[/sub]"
-        if run.font.color.type != None:
-          color = "#" + str(run.font.color.rgb)
-          text = "[color=" + color + "]" + text + "[/" + color + "]"
-        outFile.write(text)
-      outFile.write("[/right]")
-      outFile.write("\n")
-    else: # Left (default) aligned
-      for run in paragraph.runs:
-        text = run.text
-        if run.underline:
-          text = "[u]" + text + "[/u]"
-        if run.italic:
-          text = "[i]" + text + "[/i]"
-        if run.bold:
-          text = "[b]" + text + "[/b]"
-        if run.font.strike:
-          text = "[s]" + text + "[/s]"
-        if run.font.superscript:
-          text = "[sup]" + text + "[/sup]"
-        if run.font.subscript:
-          text = "[sub]" + text + "[/sub]"
-        if run.font.color.type != None:
-          color = "#" + str(run.font.color.rgb)
-          text = "[color=" + color + "]" + text + "[/" + color + "]"
-        outFile.write(text)
-      outFile.write("\n")
+    parse_alignment(outFile, paragraph)
 
 
 ########## MAIN ##########
@@ -126,7 +99,9 @@ def main():
     for p in inFiles:
       print(p)
     print("Text files will appear in the same directory as the source.")
-    os.system("pause")
+    x = input("Press Enter to continue or q to quit...")
+    if x == 'q' or x == 'Q':
+      quit()
     print("")
 
   for p in inFiles:
@@ -145,7 +120,7 @@ def main():
 
   if not options.quiet:
     print("File(s) translated.")
-    os.system("pause")
+    input("Press Enter to continue...")
 ########## END MAIN ##########
 
 # TODO:
