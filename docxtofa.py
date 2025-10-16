@@ -5,6 +5,7 @@ import io
 import os
 import docx
 from docx.enum.text import WD_ALIGN_PARAGRAPH
+from docx.dml.color import ColorFormat
 
 options = None
 
@@ -46,7 +47,7 @@ def parse_doc(inFile, outFile):
   doc = docx.Document(inFile)
   for paragraph in doc.paragraphs:
     outFile.write("\t")
-    if paragraph.alignment == WD_ALIGN_PARAGRAPH.CENTER:
+    if paragraph.alignment == WD_ALIGN_PARAGRAPH.CENTER: # Center aligned
       outFile.write("[center]")
       for run in paragraph.runs:
         text = run.text
@@ -62,10 +63,13 @@ def parse_doc(inFile, outFile):
           text = "[sup]" + text + "[/sup]"
         if run.font.subscript:
           text = "[sub]" + text + "[/sub]"
+        if run.font.color.type != None:
+          color = "#" + str(run.font.color.rgb)
+          text = "[color=" + color + "]" + text + "[/" + color + "]"
         outFile.write(text)
       outFile.write("[/center]")
       outFile.write("\n")
-    elif paragraph.alignment == WD_ALIGN_PARAGRAPH.RIGHT:
+    elif paragraph.alignment == WD_ALIGN_PARAGRAPH.RIGHT: # Right aligned
       outFile.write("[right]")
       for run in paragraph.runs:
         text = run.text
@@ -81,10 +85,13 @@ def parse_doc(inFile, outFile):
           text = "[sup]" + text + "[/sup]"
         if run.font.subscript:
           text = "[sub]" + text + "[/sub]"
+        if run.font.color.type != None:
+          color = "#" + str(run.font.color.rgb)
+          text = "[color=" + color + "]" + text + "[/" + color + "]"
         outFile.write(text)
       outFile.write("[/right]")
       outFile.write("\n")
-    else:
+    else: # Left (default) aligned
       for run in paragraph.runs:
         text = run.text
         if run.underline:
@@ -99,6 +106,9 @@ def parse_doc(inFile, outFile):
           text = "[sup]" + text + "[/sup]"
         if run.font.subscript:
           text = "[sub]" + text + "[/sub]"
+        if run.font.color.type != None:
+          color = "#" + str(run.font.color.rgb)
+          text = "[color=" + color + "]" + text + "[/" + color + "]"
         outFile.write(text)
       outFile.write("\n")
 
