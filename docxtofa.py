@@ -42,6 +42,18 @@ def get_outFilename(inFile):
 
 def parse_doc(inFile, outFile):
   doc = docx.Document(inFile)
+  for paragraph in doc.paragraphs:
+    outFile.write('\t')
+    for run in paragraph.runs:
+      text = run.text
+      if run.underline:
+        text = "[u]" + text + "[/u]"
+      if run.italic:
+        text = "[i]" + text + "[/i]"
+      if run.bold:
+        text = "[b]" + text + "[/b]"
+      outFile.write(text)
+    outFile.write('\n')
 
 
 ########## MAIN ##########
@@ -65,3 +77,10 @@ if not options.quiet:
   print("Successfully translated files.")
   os.system("pause")
 ########## END MAIN ##########
+
+# TODO:
+# Horizontal lines
+# Headings
+# Colors
+# Hyperlinks
+# Detect if last line is new line
